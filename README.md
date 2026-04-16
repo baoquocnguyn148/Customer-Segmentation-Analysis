@@ -14,4 +14,5 @@ A professional dashboard project analyzing financial performance and P&L drivers
 
 1. Create a virtual environment: `python -m venv .venv`
 2. Install dependencies: `pip install -r requirements.txt`
-3. Execute notebooks in order starting from `notebooks/01_data_exploration.ipynb`
+3. Execute Phase 1 notebook: `notebooks/01_data_exploration.ipynb`
+4. Execute Phase 2 notebook: `notebooks/02_data_cleaning.ipynb` to engineer financial P&L features.
