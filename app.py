@@ -156,13 +156,11 @@ st.markdown("""
 PLOTLY_LAYOUT = dict(
     paper_bgcolor="rgba(0,0,0,0)",
     plot_bgcolor="rgba(22,27,34,0.6)",
-    font_color="#E6EDF3",
-    font_family="Inter",
-    title_font_size=16,
-    title_font_color="#E6EDF3",
+    font=dict(color="#E6EDF3", family="Inter"),
     xaxis=dict(gridcolor="#21262D", zerolinecolor="#21262D"),
     yaxis=dict(gridcolor="#21262D", zerolinecolor="#21262D"),
     hoverlabel=dict(bgcolor="#161B22", bordercolor="#4FC3F7", font_size=12),
+    margin=dict(l=0, r=0, t=30, b=0),
 )
 
 # Default legend style — spread per chart to avoid duplicate-kwarg errors
@@ -343,16 +341,19 @@ with tab1:
             height=520,
         )
         fig_3d.update_traces(marker_size=4)
+        base_kv = {k: v for k, v in PLOTLY_LAYOUT.items() if k not in ("xaxis", "yaxis", "margin")}
         fig_3d.update_layout(
-            **{k: v for k, v in PLOTLY_LAYOUT.items() if k not in ("xaxis", "yaxis")},
-            scene=dict(
-                xaxis=dict(title="Recency (days)", gridcolor="#21262D", backgroundcolor="rgba(0,0,0,0)", color="#8B949E"),
-                yaxis=dict(title="Frequency (orders)", gridcolor="#21262D", backgroundcolor="rgba(0,0,0,0)", color="#8B949E"),
-                zaxis=dict(title="Monetary ($)", gridcolor="#21262D", backgroundcolor="rgba(0,0,0,0)", color="#8B949E"),
-                bgcolor="rgba(0,0,0,0)",
-            ),
+            **base_kv,
+            title="",
             margin=dict(l=0, r=0, t=10, b=0),
         )
+        fig_3d.update_scenes(
+            xaxis=dict(title="Recency (days)", gridcolor="#21262D", backgroundcolor="rgba(0,0,0,0)", color="#8B949E"),
+            yaxis=dict(title="Frequency (orders)", gridcolor="#21262D", backgroundcolor="rgba(0,0,0,0)", color="#8B949E"),
+            zaxis=dict(title="Monetary ($)", gridcolor="#21262D", backgroundcolor="rgba(0,0,0,0)", color="#8B949E"),
+            bgcolor="rgba(0,0,0,0)",
+        )
+
         st.plotly_chart(fig_3d, use_container_width=True)
 
     with right:
@@ -381,8 +382,8 @@ with tab1:
             annotation_text=f" K={n_clusters} selected",
             annotation_font_color="#FFB74D",
         )
-        base_layout = {k: v for k, v in PLOTLY_LAYOUT.items()}
-        fig_elbow.update_layout(**base_layout, height=240, margin=dict(l=0, r=0, t=10, b=0))
+        base_kv_e = {k: v for k, v in PLOTLY_LAYOUT.items() if k not in ("xaxis", "yaxis", "margin")}
+        fig_elbow.update_layout(**base_kv_e, title="", height=240, margin=dict(l=0, r=0, t=10, b=0))
         fig_elbow.update_layout(legend=LEGEND_INLINE)
         fig_elbow.update_yaxes(title_text="Inertia (WCSS)", secondary_y=False, gridcolor="#21262D", color="#8B949E")
         fig_elbow.update_yaxes(title_text="Silhouette Score", secondary_y=True, gridcolor="#21262D", color="#8B949E")
@@ -417,8 +418,10 @@ with tab1:
                 fillcolor=fill_rgba,
                 line=dict(color=color, width=2),
             ))
+        base_kv_r = {k: v for k, v in PLOTLY_LAYOUT.items() if k not in ("xaxis", "yaxis", "margin")}
         fig_radar.update_layout(
-            **{k: v for k, v in PLOTLY_LAYOUT.items() if k not in ("xaxis", "yaxis")},
+            **base_kv_r,
+            title="",
             polar=dict(
                 bgcolor="rgba(0,0,0,0)",
                 radialaxis=dict(visible=True, range=[0, 1], gridcolor="#21262D", color="#8B949E"),
@@ -447,7 +450,8 @@ with tab1:
             marker=dict(line=dict(color="#0D1117", width=2)),
         )
         fig_pie.update_layout(
-            **{k: v for k, v in PLOTLY_LAYOUT.items() if k not in ("xaxis", "yaxis")},
+            **{k: v for k, v in PLOTLY_LAYOUT.items() if k not in ("xaxis", "yaxis", "margin")},
+            title="",
             height=320,
             margin=dict(l=0, r=0, t=10, b=10),
             showlegend=True,
@@ -469,7 +473,8 @@ with tab1:
                 opacity=0.85,
             ))
         fig_bar.update_layout(
-            **PLOTLY_LAYOUT,
+            **{k: v for k, v in PLOTLY_LAYOUT.items() if k not in ("margin",)},
+            title="",
             barmode="group",
             height=320,
             margin=dict(l=0, r=0, t=10, b=0),
@@ -586,7 +591,8 @@ with tab2:
     ))
 
     fig_fc.update_layout(
-        **{k: v for k, v in PLOTLY_LAYOUT.items() if k not in ("xaxis", "yaxis")},
+        **{k: v for k, v in PLOTLY_LAYOUT.items() if k not in ("xaxis", "yaxis", "margin")},
+        title="",
         height=420,
         margin=dict(l=0, r=0, t=20, b=0),
         legend=LEGEND_INLINE,
@@ -627,8 +633,10 @@ with tab2:
                    fill="tozeroy", fillcolor="rgba(129,199,132,0.08)"),
         row=2, col=1,
     )
+    base_kv_d = {k: v for k, v in PLOTLY_LAYOUT.items() if k not in ("xaxis", "yaxis", "margin")}
     fig_dual.update_layout(
-        **PLOTLY_LAYOUT,
+        **base_kv_d,
+        title="",
         height=380, showlegend=False,
         margin=dict(l=0, r=0, t=30, b=0),
     )
