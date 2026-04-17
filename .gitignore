@@ -6,12 +6,19 @@ __pycache__/
 venv/
 env/
 
-# Data ignores
+# Data ignores — raw data is large; keep a .gitkeep placeholder
 data/raw/*
 !data/raw/.gitkeep
 !data/raw/superstore_raw.csv
 data/processed/*
 !data/processed/.gitkeep
+!data/processed/monthly_aggregation.csv
+
+# Streamlit cache
+.streamlit/secrets.toml
 
 # Other
 .DS_Store
+*.egg-info/
+dist/
+build/

@@ -1,0 +1,35 @@
+{
+    "name": "Modern Dark Glowing Style",
+    "dataColors": [
+        "#00A8E8",  
+        "#06D6A0", 
+        "#FF9F1C", 
+        "#EF476F", 
+        "#4361EE", 
+        "#7209B7"
+    ],
+    "background": "#0E131F", 
+    "foreground": "#FFFFFF",
+    "tableAccent": "#00A8E8",
+    "visualStyles": {
+        "*": {
+            "*": {
+                "background": [
+                    {
+                        "show": true,
+                        "color": {"solid": {"color": "#1B2332"}},
+                        "transparency": 0
+                    }
+                ], 
+                "border": [
+                    {
+                        "show": true,
+                        "color": {"solid": {"color": "#283244"}}, 
+                        "radius": 8
+                    }
+                ],
+                "fontFamily": [{"fontFamily": "Segoe UI"}]
+            }
+        }
+    }
+}

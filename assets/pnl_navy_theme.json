@@ -1,0 +1,29 @@
+{
+    "name": "Navy Blue PnL Style",
+    "dataColors": [
+        "#4BA3E3",  
+        "#FFFFFF",
+        "#82C17D", 
+        "#5979C2",
+        "#A6B1C9",
+        "#D9534F"
+    ],
+    "background": "#0D2140", 
+    "foreground": "#FFFFFF",
+    "tableAccent": "#4BA3E3",
+    "visualStyles": {
+        "*": {
+            "*": {
+                "background": [{"color": {"solid": {"color": "#1C355E"}}}], 
+                "border": [
+                    {
+                        "show": true,
+                        "color": {"solid": {"color": "#1C355E"}}, 
+                        "radius": 10
+                    }
+                ],
+                "fontFamily": [{"fontFamily": "Segoe UI"}]
+            }
+        }
+    }
+}
